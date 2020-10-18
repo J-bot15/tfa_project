@@ -1,7 +1,7 @@
 import csv
 import csv
-from django.core.management.base import BaseCommad
-
+from django.core.management.base import BaseCommand
+from squirrel_track.models import Squirrel
 
 class Command(BaseCommand):
     help = 'import data from the 2018 census file'
@@ -15,8 +15,15 @@ class Command(BaseCommand):
         with open(file_) as fp:
             reader=csv.DictReader(fp)
 
-           # for item in reader:
-            #    obj = SquirrelDetail()
+            for item in reader:
+                obj=Squirrel()
+                obj.x=item['X']
+                obj.y=item['Y']
+                obj.Unique_Squirrel_ID=item['Unique Squirrel ID']
+                obj.Shift=item['Shift']
+                obj.Date=item['Date']
+                obj.Age=item['Age']
+                obj.save()
 
 
 
