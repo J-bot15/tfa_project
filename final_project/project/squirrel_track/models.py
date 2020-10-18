@@ -1,4 +1,5 @@
 from django.db import models
+import django.utils.timezone as timezone
 
 # Create your models here.
 class Squirrel(models.Model):
@@ -6,5 +7,5 @@ class Squirrel(models.Model):
     y=models.CharField(max_length=100)
     Unique_Squirrel_ID=models.CharField(max_length=100)
     Shift=(('A','AM'),('P','PM'))
-    Date=models.DateField(<auto_now=false, **options="" auto_now_add="True,">)
+    Date=models.DateField('save_date',default=timezone.now())
     Age=(('A','Adult'),('J','Juvenile'))
